@@ -34,16 +34,22 @@ class Deck:
 
 class Player:
 
-    def __init__(self, name, balance):
+    def __init__(self, name, balance, handvalue):
         self.playerhand = []
         self.name = name
         self.balance = balance
+        self.handvalue = handvalue
 
     def removecard(self):
         return self.playerhand.pop()
 
     def takefromdeck(self):
         self.playerhand.append(Deck.dealone)
+
+    def totalvalue(self):
+        for cards in self.playerhand:
+            self.handvalue += cards.value
+        return self.handvalue
 
     def __str__(self):
         return f'{self.name} has {len(self.playerhand)} cards'
