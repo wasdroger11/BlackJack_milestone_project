@@ -34,19 +34,16 @@ class Deck:
 
 class Player:
 
-    def __init__(self, name):
+    def __init__(self, name, balance):
         self.playerhand = []
         self.name = name
+        self.balance = balance
 
     def removecard(self):
         return self.playerhand.pop()
 
+    def takefromdeck(self):
+        self.playerhand.append(Deck.dealone)
+
     def __str__(self):
         return f'{self.name} has {len(self.playerhand)} cards'
-
-
-newdeck = Deck()
-newdeck.shuffle()
-dealer = Player('Dealer')
-player = Player('Player')
-
