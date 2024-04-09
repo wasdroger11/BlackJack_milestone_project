@@ -34,11 +34,11 @@ class Deck:
 
 class Player:
 
-    def __init__(self, name, balance, handvalue):
+    def __init__(self, name, balance):
         self.playerhand = []
         self.name = name
         self.balance = balance
-        self.handvalue = handvalue
+        self.handvalue = 0
 
     def removecard(self):
         return self.playerhand.pop()

@@ -2,10 +2,11 @@ from Classes import Player, Deck
 
 game = True
 betamount = 0
-dealer = Player('Dealer', 0, 0)
-player = Player('Player', 1000, 0)
+dealer = Player('Dealer', 0)
+player = Player('Player', 1000)
 newdeck = Deck()
 newdeck.shuffle()
+table = []
 
 
 def bet():
@@ -25,6 +26,41 @@ def balance():
     print(f'You have ${player.balance} left in your account')
 
 
+def tablesetup():
+    setup = True
+    global table
+    playername = ''
+    while setup:
+        playername = input("What is your name?")
+        table.append(playername)
+        extraplayers()
+        break
+
+
+def extraplayers():
+    setup = True
+    global table
+    playername = ''
+    while setup:
+        addplayer = ''
+        while not (addplayer == "Y" or input == "N"):
+            addplayer = input("Do you want to add another player? (Y or N)").upper()
+            if addplayer == "Y":
+                playername = input('What is your name?')
+                table.append(playername)
+                continue
+            if addplayer == "N":
+                print("List of players:")
+                print(table)
+                setup = False
+                for names in table:
+                    Player(names, 1000)
+                break
+
+            else:
+                print("please type Y or N")
+
+
 def turn():
     global newdeck
     if len(newdeck.fulldeck) == 0:
@@ -39,6 +75,7 @@ def turn():
     print(f'Your count is  {player.totalvalue()}')
 
 
+tablesetup()
 bet()
 '''
 while game:
